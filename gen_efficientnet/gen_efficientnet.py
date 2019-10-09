@@ -566,7 +566,7 @@ def _gen_spnasnet(depth_multiplier, num_classes=1000, **kwargs):
     return model
 
 
-def _gen_efficientnet(channel_multiplier=1.0, depth_multiplier=1.0, num_classes=1000, **kwargs):
+def _gen_efficientnet(channel_multiplier=1.0, depth_multiplier=1.0, num_classes=1000, act_fn=swish, **kwargs):
     """Creates an EfficientNet model.
 
     Ref impl: https://github.com/tensorflow/tpu/blob/master/models/official/efficientnet/efficientnet_model.py
@@ -606,7 +606,7 @@ def _gen_efficientnet(channel_multiplier=1.0, depth_multiplier=1.0, num_classes=
         channel_min=None,
         num_features=round_channels(1280, channel_multiplier, 8, None),
         bn_args=_resolve_bn_args(kwargs),
-        act_fn=swish,
+        act_fn=act_fn,
         **kwargs
     )
     return model
